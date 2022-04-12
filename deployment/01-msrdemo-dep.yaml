@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: msrdemo
+  name: msrdemo
+spec:
+  replicas: 3  
+  strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+  minReadySeconds: 60
+  selector:
+    matchLabels:
+      app: msrdemo
+  template:
+    metadata:
+      labels:
+        app: msrdemo
+    spec:
+      containers:
+      - image: staillansag/msrdemo:latest
+        imagePullPolicy: IfNotPresent
+        name: msrdemo
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+        ports:
+        - containerPort: 5555
