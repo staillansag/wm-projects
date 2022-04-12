@@ -10,14 +10,14 @@ Develop the services using the Designer as usual. You will place these services 
 
 ## GIT Configuration
 
-What needs to be done: 
+### Objectives: 
 - push the local Integration Server packages (which you created using the Designer) to a remote git repository (we will use Github)
-- these packages are located in the installation directory of the Integration Server that is connected to the Designer
 
-It is assumed that:
+### Assumptions:
 - you have the git cli installed in the machine that hosts the integration server (any graphical git client could also be used, but the following instructions work with the cli)
 - you have a Github account
 
+### What needs to be done:
 1.  Create a remote git repository that will host the IS packages that will be deployed in the MSR.
 2.  Go to the directory where the IS packages are located. In Linux this is usually going to be: `/opt/softwareag/IntegrationServer/instances/default`
     You should see a `packages` directory there, where the packages we want to deploy in the MSR are located.
@@ -33,14 +33,16 @@ It is assumed that:
 
 ## Build Configuration
 
-What needs to be done
-- build a Docker image that contains the MSR license file and the IS packages that were pushed to git
-- tag this image and push it to a Docker repository (we will use Docker hub here, but any Docker repsository could be used)
+### Objectives: 
+-   Set up the build environment
+-   build a first Docker image that contains the MSR license file and the IS packages that were pushed to git
+-   tag this image and push it to a Docker repository (we will use Docker hub here, but any Docker repsository could be used)
 
-It is assumed that:
-- Docker is installed in the machine where you will perform the build (we will call it the build server.)
-- You have a Docker hub account
+### Assumptions:
+-   Docker is installed in the machine where you will perform the build (we will call it the build server.)
+-   You have a Docker hub account
 
+### What needs to be done:
 1.  Create a directory somewhere in the build server
 2.  Create a resources sub-folder and place your MSR license file in it (xml file)
 3.  Create a source sub-folder and place yourself into this folder
@@ -54,3 +56,15 @@ It is assumed that:
     - in the CLI, login to Docker hub using the `docker login` command. Remember that, just like git, docker hub expects you to provide a token by means of a password.
     - Enter the following command to push the image: `docker push <dockerId>/<serviceName>:<serviceVersion>`
 
+## Deployment configuration
+
+### Objectives: 
+-   set up the Kubernetes cluster (we will use Azure Kubernetes Services here, but it works nearly the same with any other Kubernetes environment)
+-   set up the Kubernetes deployment descriptors (the yaml files)
+-   do a first deployment in our Kubernetes cluster
+-   check that everything is working as it should
+
+### What needs to be done:
+1.  xxx
+
+## Towards continuous deployment
