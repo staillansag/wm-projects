@@ -50,8 +50,8 @@ Develop the services using the Designer as usual. You will place these services 
 5.  Move one level up (to the root of your build directory) and copy the Dockerfile that is in this project
 6.  Run this command to build the Docker image: `docker build -t <dockerId>/<serviceName>:<serviceVersion>` where
     - `<dockerId>` is your ID in the Docker repository where you will subsequently push the image
-    - `<serviceName>' is the name of your microservice
-    - `<serviceVersion>' is the version of your microservice (for instance 1.0.0)
+    - `<serviceName>` is the name of your microservice
+    - `<serviceVersion>` is the version of your microservice (for instance 1.0.0)
 7.  Push the image to Docker hub: 
     - in the CLI, login to Docker hub using the `docker login` command. Remember that, just like git, docker hub expects you to provide a token by means of a password.
     - Enter the following command to push the image: `docker push <dockerId>/<serviceName>:<serviceVersion>`
