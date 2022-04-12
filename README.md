@@ -10,6 +10,13 @@ Develop the services using the Designer as usual. You will place these services 
 
 ## GIT Configuration
 
+What needs to be done: 
+- push the local Integration Server packages (which you created using the Designer) to a remote git repository
+- these packages are located in the installation directory of the Integration Server that is connected to the Designer
+
+A procedure using the git command line tools is described here, but it's going to work with any git client.
+
+
 Ensure git is installed in the local machine where the IS is running, for instance with this command: `git --version`
 
 If git is not installed, go to https://git-scm.com/ and follow the documented installation procedure.
