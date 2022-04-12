@@ -55,6 +55,7 @@ Develop the services using the Designer as usual. You will place these services 
 7.  Push the image to Docker hub: 
     - in the CLI, login to Docker hub using the `docker login` command. Remember that, just like git, docker hub expects you to provide a token by means of a password.
     - Enter the following command to push the image: `docker push <dockerId>/<serviceName>:<serviceVersion>`
+8.  TODO: push an alias of the image with serviceVersion = latest
 
 ## Deployment configuration
 
@@ -64,7 +65,33 @@ Develop the services using the Designer as usual. You will place these services 
 -   do a first deployment in our Kubernetes cluster
 -   check that everything is working as it should
 
+### Assumptions:
+-   You have an Azure account
+-   Azure CLI is installed in your machine (you can also use the Azure Cloud shell as an alternative)
+
 ### What needs to be done:
-1.  xxx
+1.  Create the AKS cluster:
+    1.  Create a resource group: `az group create --location eastus2 --name <resource_group>`
+        Note: location can be changed (East US2 is chosen here because we'll work with Bs VMs that are cheaper in this region)
+    2.  Create the cluster: `az aks create --resource-group <resource_group> --name <cluster_name> --location eastus2 --node-count 1 --node-vm-size "Standard_B4ms"`
+        
+        Note: a Standard_B4ms VM is used here with 4 cores and 16 Gb memory. In theory a cheaper Standard_B2ms VM (with 2 cores and 8 Gb memory) could also be used.
+        
+        Note 2: to save costs, the AKS server can be stopped when it's no longer needed using this command `az aks stop --resource-group <resource_group> --name <aks>` and restarted later using `az aks start --resource-group <resource_group> --name <aks>`
+        
+2.  Configure the AKS cluster: here we essentially need to install some packages related to the ingress controller that will expose our service to the outsode world.
+    1.  TODO
+        
+3.  Create the Kubernetes deployment descriptors. To help you, you can make a copy of the yaml files of this project and modify them as follows:
+    1. 01-msrdemo-dep.yaml: this is the main deployment descriptor, used by K8S to manage the pods. We specify 3 instances with rolling updates here. You just need to replace all `msrdemo` mentions with the name of your microservice, the other settings will work fine.
+    2. 02-msrdemo-svc.yaml: it specifies the service that's on top of the pods. Just replace all `msrdemo` mentions with the name of your microservice.
+    3. 99-ingress.yaml: it specifies the ingress controller that exposes the service to the outside world (it's some sort of reverse proxy.) Just replace all `msrdemo` mentions with the name of your microservice.
+
+4.  Load the deployment deployment descriptors in AKS using the kubectl utility
+    1.  Ensure kubectl points to the correct cluster, by submitting this command: `az aks get-credentials --resource-group <resource_group> --name <cluster_name>`
+    2.  In the folder where the 3 yaml files are located, issue this command: `kubectl apply -f .`
+    3.  Wait for about a minute and check that the 3 pods are running using the following command: `kubectl get pods`
+    4.  Check that the service is also running using `kubectl get svc`
+    5.  Finally, check that the ingress controller is up and running using `kubectl get ingress`. You should see an external IP in the output of this command, use it to call the services deployed in the MSR. By default the ingress exposes these services on port 80.
 
 ## Towards continuous deployment
