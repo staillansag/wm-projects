@@ -10,3 +10,40 @@ We will describe here a Kubernetes deployment with the MSR microservice as a sid
 
 ![Kubernetes deployment structure](https://github.com/staillansag/wm-packages/blob/main/microgateway/K8S_SideCarDeployment.png)
 
+Here are the steps to have this deployment working.
+
+## API Gateway configuration
+
+
+## Microgateway image build
+
+For convenience we will work in the microgateway install directory (the one where the microgateway.sh file is located.)
+
+### Generate a custom settings yaml file
+
+We create a msrdemo-mcgw-config.yaml file that contains:
+-   Information to connect to the API gateway and retrieve assets
+-   The microgateway listening port
+-   The aliases (which contain information such as backend urls, authentication information, ...)
+
+### Generate the Dockerfile
+
+We can use the microgateway.sh utility to generate this file:
+`./microgateway.sh createDockerFile -c msrdemo-mcgw-config.yaml -docker_file DockerFileMSRDemoMCGW -dod .`
+
+It creates a DockerFileMSRDemoMCGW file as well as a tmp-docker folder.
+
+### Build the docker image and push it to Docker hub
+
+We can issue a simple Docker build command here, passing it the location of the Docker file we previously generated:
+`docker build -t staillansag/msrdemo:mcgw-0.0.6 -f DockerFileMSRDemoMCGW .`
+
+We can then push the image to Dicker hub (after logging in, if necessary):
+`docker push staillansag/msrdemo:mcgw-0.0.6`
+
+## MSR microservice build
+
+See the main README.md page of this github project.
+The addition of the microgateway does not impact the way the MSR microservice image is built.
+
+## Deployment
