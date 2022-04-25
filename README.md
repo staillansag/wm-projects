@@ -80,7 +80,10 @@ Develop the services using the Designer as usual. You will place these services 
         Note 2: to save costs, the AKS server can be stopped when it's no longer needed using this command `az aks stop --resource-group <resource_group> --name <aks>` and restarted later using `az aks start --resource-group <resource_group> --name <aks>`
         
 2.  Configure the AKS cluster: here we essentially need to install some packages related to the ingress controller that will expose our service to the outsode world.
-    1.  TODO
+    1.  Add the ingress nginx repo to the helm config: `helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx`
+    2.  Update helm to load the content of the newly added repo: `helm repo update`
+    3.  Install nginx ingress from the repo: `helm install nginx-ingress ingress-nginx/ingress-nginx`
+    4.  Verify the installation: `kubectl get service nginx-ingress-ingress-nginx-controller`
         
 3.  Create the Kubernetes deployment descriptors. To help you, you can make a copy of the yaml files of this project and modify them as follows:
     1. 01-msrdemo-dep.yaml: this is the main deployment descriptor, used by K8S to manage the pods. We specify 3 instances with rolling updates here. You just need to replace all `msrdemo` mentions with the name of your microservice, the other settings will work fine.
