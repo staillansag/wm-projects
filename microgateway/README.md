@@ -38,7 +38,7 @@ It creates a DockerFileMSRDemoMCGW file as well as a tmp-docker folder.
 We can issue a simple Docker build command here, passing it the location of the Docker file we previously generated:
 `docker build -t <dockerId>/<mcgwImageName>:<mcgwImageVersion> -f DockerFileMSRDemoMCGW .`
 
-We can then push the image to Dicker hub (after logging in, if necessary):
+We can then push the image to Docker hub (after logging in, if necessary):
 `docker push <dockerId>/<mcgwImageName>:<mcgwImageVersion>`
 
 ## MSR microservice build
