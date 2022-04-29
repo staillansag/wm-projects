@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msrdemo-mcgw
+  labels:
+    app: msrdemo-mcgw
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: msrdemo-mcgw
+  template:
+    metadata:
+      labels:
+        app: msrdemo-mcgw
+      annotations:
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: msrdemo-sidecar
+        image: staillansag/msrdemo:mcgw-0.0.7-SNAPSHOT
+        env:
+        - name: mcgw_api_gateway_url
+          value: //replace with URL of your API gateway, for instance http://localhost:5555//
+        - name: mcgw_api_gateway_user
+          value: Administrator
+        - name: mcgw_api_gateway_password
+          valueFrom:
+            secretKeyRef:
+              name: apigw-secret
+              key: password
+        - name: mcgw_downloads_apis
+          value: ContactsAPI
+        - name: mcgw_ports_http
+          value: "9090"
+        - name: mcgw_ports_https
+          value: "9093"
+        - name: mcgw_microgatewayPool_microgatewayPoolName
+          value: msrdemo-mcgw
+        - name: mcgw_aliases_contacts_be_url_type
+          value: endpoint
+        - name: mcgw_aliases_contacts_be_url_endPointURI
+          value: http://localhost:5555/api
+        - name: mggw_applications_sync_enabled
+          value: "true"
+        - name: mggw_applications_sync_polling_interval_secs
+          value: "10"
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/softwareag/Microgateway/files/k8s-lifenesscheck.sh
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/softwareag/Microgateway/files/k8s-readinesscheck.sh
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+      - name: msrdemo-service
+        image: staillansag/msrdemo:latest
