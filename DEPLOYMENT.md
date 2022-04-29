@@ -47,14 +47,30 @@
         kube-dns                                       ClusterIP      10.0.0.10     <none>           53/UDP,53/TCP                3d16h
         metrics-server                                 ClusterIP      10.0.113.30   <none>           443/TCP                      3d16h
         ```
-3.  Create the Kubernetes deployment descriptors. To help you, you can make a copy of the yaml files of this project and modify them as follows:
+3.  Create the Kubernetes deployment descriptors. To help you, you can make a copy of [the yaml files of this project](https://github.com/staillansag/wm-packages/tree/main/deployment) and modify them as follows:
     1. 01-msrdemo-dep.yaml: this is the main deployment descriptor, used by K8S to manage the pods. We specify 3 instances with rolling updates here. You just need to replace all `msrdemo` mentions with the name of your microservice, the other settings will work fine.
     2. 02-msrdemo-svc.yaml: it specifies the service that's on top of the pods. Just replace all `msrdemo` mentions with the name of your microservice.
     3. 99-ingress.yaml: it specifies the ingress controller that exposes the service to the outside world (it's some sort of reverse proxy.) Just replace all `msrdemo` mentions with the name of your microservice.
 
 4.  Load the deployment deployment descriptors in AKS using the kubectl utility
-    1.  Ensure kubectl points to the correct cluster, by submitting this command: `az aks get-credentials --resource-group <resource_group> --name <cluster_name>`
-    2.  In the folder where the 3 yaml files are located, issue this command: `kubectl apply -f .`
-    3.  Wait for about a minute and check that the 3 pods are running using the following command: `kubectl get pods`
-    4.  Check that the service is also running using `kubectl get svc`
-    5.  Finally, check that the ingress controller is up and running using `kubectl get ingress`. You should see an external IP in the output of this command, use it to call the services deployed in the MSR. By default the ingress exposes these services on port 80.
+    1.  Ensure kubectl points to the correct cluster, by submitting this command: 
+        ```
+        az aks get-credentials --resource-group $resourceGroup --name $clusterName
+        ```
+    3.  In the folder where the 3 yaml files are located, issue this command: 
+        ```
+        kubectl apply -f .
+        ```
+    5.  Wait for about a minute and check that the 3 pods are running using the following command: 
+        ```
+        kubectl get pods
+        ```
+    7.  Check that the service is also running using 
+        ```
+        kubectl get svc
+        ```
+    9.  Finally, check that the ingress controller is up and running using 
+        ```
+        kubectl get ingress
+        ```
+        You should see an external IP in the output of this command, use it to call the services deployed in the MSR. By default the ingress exposes these services on port 80.
