@@ -1,17 +1,16 @@
 # Deployment
 
-## Objectives: 
+##  Objectives: 
 -   set up the Kubernetes cluster (we will use Azure Kubernetes Services here, but it works nearly the same with any other Kubernetes environment)
 -   set up the Kubernetes deployment descriptors (the yaml files)
 -   do a first deployment in our Kubernetes cluster
 -   check that everything is working as it should
 
-## Assumptions:
+##  Assumptions:
 -   You have an Azure account
 -   Azure CLI is installed in your machine (you can also use the Azure Cloud shell as an alternative)
 
-## What needs to be done:
-1.  Create the AKS cluster:
+##  Create the AKS cluster:
     1.  Position a few shell variables:
         ```
         location=westeurope         #Use "az account list-locations -o table" to list the available Azure locations
@@ -31,7 +30,10 @@
 
         Note: to save costs, the AKS server can be stopped when it's no longer needed using this command `az aks stop --resource-group $resourceGroup --name $clusterName` and restarted later using `az aks start --resource-group $resourceGroup --name $clusterName`
         
-2.  Configure the AKS cluster (we reuse the same shell variables positionned in the previous section):
+##  Configure the AKS cluster 
+    
+    (we reuse the same shell variables positionned in the previous section)
+    
     1.  Enable the AKS HTTP Application routing addon, which will be in charge of the Ingress part (behind the scenes it installs an nginx ingress controller):
         ```
         az aks enable-addons --resource-group $resourceGroup --name $clusterName --addons http_application_routing
@@ -47,12 +49,14 @@
         kube-dns                                       ClusterIP      10.0.0.10     <none>           53/UDP,53/TCP                3d16h
         metrics-server                                 ClusterIP      10.0.113.30   <none>           443/TCP                      3d16h
         ```
-3.  Create the Kubernetes deployment descriptors. To help you, you can make a copy of [the yaml files of this project](https://github.com/staillansag/wm-packages/tree/main/deployment) and modify them as follows:
+##  Create the Kubernetes deployment descriptors. 
+
+    To help you, you can make a copy of [the yaml files of this project](https://github.com/staillansag/wm-packages/tree/main/deployment) and modify them as follows:
     1. 01-msrdemo-dep.yaml: this is the main deployment descriptor, used by K8S to manage the pods. We specify 3 instances with rolling updates here. You just need to replace all `msrdemo` mentions with the name of your microservice, the other settings will work fine.
     2. 02-msrdemo-svc.yaml: it specifies the service that's on top of the pods. Just replace all `msrdemo` mentions with the name of your microservice.
     3. 99-ingress.yaml: it specifies the ingress controller that exposes the service to the outside world (it's some sort of reverse proxy.) Just replace all `msrdemo` mentions with the name of your microservice.
 
-4.  Load the deployment deployment descriptors in AKS using the kubectl utility
+##  Load the deployment deployment descriptors in AKS using the kubectl utility
     1.  Ensure kubectl points to the correct cluster, by submitting this command: 
         ```
         az aks get-credentials --resource-group $resourceGroup --name $clusterName
@@ -96,7 +100,7 @@
         
         Note: it can take a couple of minutes for the IP address to be allocated to the Ingress, if you see an empty address field then wait and rerun the same command.
         
-5.  Call the service, for instance using curl:
+##  Call the service, for instance using curl:
     ```
     curl -u Administrator:manage --header 'Accept: application/json' http://$ipAddress/api/contacts/1
     ```
