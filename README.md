@@ -72,9 +72,11 @@ Develop the services using the Designer as usual. You will place these services 
 ### What needs to be done:
 1.  Create the AKS cluster:
     1.  Position a few variables:
-        `location=westeurope
+        ```
+        location=westeurope     #Use "az account list-locations -o table" to list the available Azure locations
         resourceGroup=aks_group
-        clusterName=msrdemoaks`
+        clusterName=msrdemoaks  #This name must be globally unique
+        ```
     2.  Create a resource group: `az group create --location eastus2 --name <resource_group>`
         Note: location can be changed (East US2 is chosen here because we'll work with Bs VMs that are cheaper in this region)
     3.  Create the cluster: `az aks create --resource-group <resource_group> --name <cluster_name> --location eastus2 --node-count 1 --node-vm-size "Standard_B4ms"`
