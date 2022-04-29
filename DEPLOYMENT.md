@@ -65,12 +65,38 @@
         ```
         kubectl get pods
         ```
+        It should return something of the sort:
+        ```
+        NAME                                                      READY   STATUS    RESTARTS   AGE
+        msrdemo-56cf6fd577-95m6k                                  1/1     Running   0          9s
+        msrdemo-56cf6fd577-rjkbg                                  1/1     Running   0          9s
+        msrdemo-56cf6fd577-x2nqf                                  1/1     Running   0          9s
+        ```
     7.  Check that the service is also running using 
         ```
         kubectl get svc
+        ```
+        It should return something of the sort:
+        ```
+        NAME                                               TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)                      AGE
+        kubernetes                                         ClusterIP      10.0.0.1       <none>           443/TCP                      3d17h
+        msrdemo                                            ClusterIP      10.0.224.20    <none>           80/TCP                       13s
         ```
     9.  Finally, check that the ingress controller is up and running using 
         ```
         kubectl get ingress
         ```
-        You should see an external IP in the output of this command, use it to call the services deployed in the MSR. By default the ingress exposes these services on port 80.
+        It should return something of the sort:
+        ```
+        NAME              CLASS    HOSTS   ADDRESS          PORTS   AGE
+        msrdemo-ingress   <none>   *       52.157.228.200   80      57s
+        ```
+        
+        You can use the IP address expose by this command to call the service. By default the ingress exposes these services on port 80.
+        
+        Note: it can take a couple of minutes for the IP address to be allocated to the Ingress, if you see an empty address field then wait and rerun the same command.
+        
+5.  Call the service, for instance using curl:
+    ```
+    curl -u Administrator:manage --header 'Accept: application/json' http://$ipAddress/api/contacts/1
+    ```
