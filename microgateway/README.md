@@ -110,4 +110,51 @@ In the the standalone MSR deployment we used exactly the same file.
 
 ### Load the deployment deployment descriptors in AKS using the kubectl utility
 
+1.  Ensure kubectl points to the correct cluster, by submitting this command: 
+    ```
+    az aks get-credentials --resource-group $resourceGroup --name $clusterName
+    ```
+3.  In the folder where the 3 yaml files are located, issue this command: 
+    ```
+    kubectl apply -f .
+    ```
+5.  Wait for about a minute and check that the 3 pods are running using the following command: 
+    ```
+    kubectl get pods
+    ```
+    It should return something of the sort:
+    ```
+    NAME                                                      READY   STATUS    RESTARTS   AGE
+    msrdemo-mcgw-557ccf8f9f-f4pfr                             2/2     Running   0          2m38s
+    msrdemo-mcgw-557ccf8f9f-xqsv7                             2/2     Running   0          2m38s
+    ```
+7.  Check that the service is also running using 
+    ```
+    kubectl get svc
+    ```
+    It should return something of the sort:
+    ```
+    NAME                                               TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)                      AGE
+    kubernetes                                         ClusterIP      10.0.0.1       <none>           443/TCP                      3d19h
+    msrdemo-mcgw                                       ClusterIP      10.0.12.227    <none>           80/TCP                       4m18s
+    ```
+9.  Finally, check that the ingress controller is up and running using 
+    ```
+    kubectl get ingress
+    ```
+    It should return something of the sort:
+    ```
+    NAME              CLASS    HOSTS   ADDRESS          PORTS   AGE
+    msrdemo-ingress   <none>   *       52.157.228.200   80      4m53s
+    ```
 
+    You can use the IP address expose by this command to call the service. By default the ingress exposes these services on port 80.
+
+    Note: it can take a couple of minutes for the IP address to be allocated to the Ingress, if you see an empty address field then wait and rerun the same command.
+        
+##  Call the service
+You can for instance issue the following curl command.
+Here we pass it the default IS admin user / password, and we have also positionned a `ipAddress` variable that contains the IP address of the ingress, as well as an `apiKey` variable that contains the API key of the application created in the API gateway.
+```
+curl http://$ipAddress/gateway/ContactsAPI/1.0/contacts/1 --header 'Accept: application/json' --header "x-gateway-apikey: $apiKey"
+```
