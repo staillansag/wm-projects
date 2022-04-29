@@ -73,17 +73,20 @@ Develop the services using the Designer as usual. You will place these services 
 1.  Create the AKS cluster:
     1.  Position a few variables:
         ```
-        location=westeurope     #Use "az account list-locations -o table" to list the available Azure locations
+        location=westeurope         #Use "az account list-locations -o table" to list the available Azure locations
         resourceGroup=aks_group
-        clusterName=msrdemoaks  #This name must be globally unique
+        clusterName=msrdemoaks      #This name must be globally unique
+        clusterNodeCount=1          #Number of worker nodes in the cluster (1 is sufficient for a demo, to save costs)
+        vmSize=Standard_B2ms        #VM with 2 cores and 8 Gb RAM (the more expensive Standard_B4ms can also be used with 4 cores / 16 Gb RAM)
         ```
-    2.  Create a resource group: `az group create --location eastus2 --name <resource_group>`
-        Note: location can be changed (East US2 is chosen here because we'll work with Bs VMs that are cheaper in this region)
-    3.  Create the cluster: `az aks create --resource-group <resource_group> --name <cluster_name> --location eastus2 --node-count 1 --node-vm-size "Standard_B4ms"`
-        
-        Note: a Standard_B4ms VM is used here with 4 cores and 16 Gb memory. In theory a cheaper Standard_B2ms VM (with 2 cores and 8 Gb memory) could also be used.
-        
-        Note 2: to save costs, the AKS server can be stopped when it's no longer needed using this command `az aks stop --resource-group <resource_group> --name <aks>` and restarted later using `az aks start --resource-group <resource_group> --name <aks>`
+    2.  Create a resource group: 
+        ```
+        az group create --location $location --name $resourceGroup
+        ```
+    3.  Create the cluster: 
+        `az aks create --resource-group $resourceGroup --name $clusterName --location $location --node-count $clusterNodeCount --node-vm-size $vmSize`
+
+        Note: to save costs, the AKS server can be stopped when it's no longer needed using this command `az aks stop --resource-group $resourceGroup --name $clusterName` and restarted later using `az aks start --resource-group $resourceGroup --name $clusterName`
         
 2.  Configure the AKS cluster: here we essentially need to install some packages related to the ingress controller that will expose our service to the outsode world.
     1.  Install helm (if not already done): `curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash`
