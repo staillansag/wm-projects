@@ -14,6 +14,7 @@ Here are the steps to have this deployment working.
 
 ## API Gateway configuration
 
+TODO
 
 ## Microgateway image build
 
