@@ -63,7 +63,7 @@ See [Create the AKS cluster](https://github.com/staillansag/wm-packages/blob/mai
 
 We can use the microservices.sh to generate a yaml deployment file: 
 ```
-./microgateway.sh createKubernetesFile --docker_image <dockerId>/<mcgwImageName>:<mcgwImageVersion> --pod_name msrdemo-sidecar --sidecar_docker_image <dockerId>/<msrImageName>:<msrImageVersion> --sidecar_pod_name msrdemo-service --output msrdemo-mcgw-deployment.yml -gw <apiGatewayUrl> -gwu <apiGatewayUser> -rep <nbReplica>
+./microgateway.sh createKubernetesFile --docker_image $dockerId/$mcgwImageName:$mcgwImageVersion --pod_name msrdemo-sidecar --sidecar_docker_image $dockerId/$msrImageName:$msrImageVersion --sidecar_pod_name msrdemo-service --output msrdemo-mcgw-deployment.yml -gw $apiGatewayUrl -gwu $apiGatewayUser -rep $nbReplica
 ```
 
 However the generated file needs to be modified before it can be used:
