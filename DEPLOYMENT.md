@@ -100,3 +100,4 @@
     ```
     curl -u Administrator:manage --header 'Accept: application/json' http://$ipAddress/api/contacts/1
     ```
+    
