@@ -33,6 +33,8 @@ Develop the services using the Designer as usual. You will place these services 
 
 ## Build Configuration
 
+See https://github.com/staillansag/wm-packages/blob/main/build/README.md
+
 ### Objectives: 
 -   Set up the build environment
 -   build a first Docker image that contains the MSR license file and the IS packages that were pushed to git
