@@ -30,17 +30,23 @@ We create a msrdemo-mcgw-config.yaml file that contains:
 ### Generate the Dockerfile
 
 We can use the microgateway.sh utility to generate this file:
-`./microgateway.sh createDockerFile -c msrdemo-mcgw-config.yaml -docker_file DockerFileMSRDemoMCGW -dod .`
+```
+./microgateway.sh createDockerFile -c msrdemo-mcgw-config.yaml -docker_file DockerFileMSRDemoMCGW -dod .
+```
 
 It creates a DockerFileMSRDemoMCGW file as well as a tmp-docker folder.
 
 ### Build the docker image and push it to Docker hub
 
 We can issue a simple Docker build command here, passing it the location of the Docker file we previously generated:
-`docker build -t <dockerId>/<mcgwImageName>:<mcgwImageVersion> -f DockerFileMSRDemoMCGW .`
+```
+docker build -t $dockerId/$mcgwImageName:$mcgwImageVersion -f DockerFileMSRDemoMCGW .
+```
 
 We can then push the image to Docker hub (after logging in, if necessary):
-`docker push <dockerId>/<mcgwImageName>:<mcgwImageVersion>`
+```
+docker push $dockerId/$mcgwImageName:$mcgwImageVersion
+```
 
 ## MSR microservice build
 
@@ -56,7 +62,9 @@ TODO
 ### Generation of the Kubernetes deployment descriptors
 
 We can use the microservices.sh to generate a yaml deployment file: 
-`./microgateway.sh createKubernetesFile --docker_image <dockerId>/<mcgwImageName>:<mcgwImageVersion> --pod_name msrdemo-sidecar --sidecar_docker_image <dockerId>/<msrImageName>:<msrImageVersion> --sidecar_pod_name msrdemo-service --output msrdemo-mcgw-deployment.yml -gw <apiGatewayUrl> -gwu <apiGatewayUser> -rep <nbReplica>`
+```
+./microgateway.sh createKubernetesFile --docker_image <dockerId>/<mcgwImageName>:<mcgwImageVersion> --pod_name msrdemo-sidecar --sidecar_docker_image <dockerId>/<msrImageName>:<msrImageVersion> --sidecar_pod_name msrdemo-service --output msrdemo-mcgw-deployment.yml -gw <apiGatewayUrl> -gwu <apiGatewayUser> -rep <nbReplica>
+```
 
 However the generated file needs to be modified before it can be used:
 -   A Kubernetes secret needs to be created, which holds the API gateway password
