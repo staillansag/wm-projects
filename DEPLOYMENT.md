@@ -11,24 +11,24 @@
 -   Azure CLI is installed in your machine (you can also use the Azure Cloud shell as an alternative)
 
 ##  Create the AKS cluster:
-    1.  Position a few shell variables:
-        ```
-        location=westeurope         #Use "az account list-locations -o table" to list the available Azure locations
-        resourceGroup=aks_group
-        clusterName=msrdemoaks      #This name must be globally unique
-        clusterNodeCount=1          #Number of worker nodes in the cluster (1 is sufficient for a demo, to save costs)
-        vmSize=Standard_B2ms        #VM with 2 cores and 8 Gb RAM (the more expensive Standard_B4ms can also be used with 4 cores / 16 Gb RAM)
-        ```
-    2.  Create a resource group: 
-        ```
-        az group create --location $location --name $resourceGroup
-        ```
-    3.  Create the cluster: 
-        ```
-        az aks create --resource-group $resourceGroup --name $clusterName --location $location --node-count $clusterNodeCount --node-vm-size $vmSize
-        ```
+1.  Position a few shell variables:
+    ```
+    location=westeurope         #Use "az account list-locations -o table" to list the available Azure locations
+    resourceGroup=aks_group
+    clusterName=msrdemoaks      #This name must be globally unique
+    clusterNodeCount=1          #Number of worker nodes in the cluster (1 is sufficient for a demo, to save costs)
+    vmSize=Standard_B2ms        #VM with 2 cores and 8 Gb RAM (the more expensive Standard_B4ms can also be used with 4 cores / 16 Gb RAM)
+    ```
+2.  Create a resource group: 
+    ```
+    az group create --location $location --name $resourceGroup
+    ```
+3.  Create the cluster: 
+    ```
+    az aks create --resource-group $resourceGroup --name $clusterName --location $location --node-count $clusterNodeCount --node-vm-size $vmSize
+    ```
 
-        Note: to save costs, the AKS server can be stopped when it's no longer needed using this command `az aks stop --resource-group $resourceGroup --name $clusterName` and restarted later using `az aks start --resource-group $resourceGroup --name $clusterName`
+    Note: to save costs, the AKS server can be stopped when it's no longer needed using this command `az aks stop --resource-group $resourceGroup --name $clusterName` and restarted later using `az aks start --resource-group $resourceGroup --name $clusterName`
         
 ##  Configure the AKS cluster 
     
