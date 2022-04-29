@@ -71,7 +71,7 @@ Develop the services using the Designer as usual. You will place these services 
 
 ### What needs to be done:
 1.  Create the AKS cluster:
-    1.  Position a few variables:
+    1.  Position a few shell variables:
         ```
         location=westeurope         #Use "az account list-locations -o table" to list the available Azure locations
         resourceGroup=aks_group
@@ -90,13 +90,22 @@ Develop the services using the Designer as usual. You will place these services 
 
         Note: to save costs, the AKS server can be stopped when it's no longer needed using this command `az aks stop --resource-group $resourceGroup --name $clusterName` and restarted later using `az aks start --resource-group $resourceGroup --name $clusterName`
         
-2.  Configure the AKS cluster: here we essentially need to install some packages related to the ingress controller that will expose our service to the outsode world.
-    1.  Install helm (if not already done): `curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash`
-    2.  Add the ingress nginx repo to the helm config: `helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx`
-    3.  Update helm to load the content of the newly added repo: `helm repo update`
-    4.  Install nginx ingress from the repo: `helm install nginx-ingress ingress-nginx/ingress-nginx`
-    5.  Verify the installation: `kubectl get service nginx-ingress-ingress-nginx-controller`
-        
+2.  Configure the AKS cluster (we reuse the same shell variables positionned in the previous section):
+    1.  Enable the AKS HTTP Application routing addon, which will be in charge of the Ingress part (behind the scenes it installs an nginx ingress controller):
+        ```
+        az aks enable-addons --resource-group $resourceGroup --name $clusterName --addons http_application_routing
+        ```
+    2.  Check the deployment of the nginx ingress using this command:
+        ```
+        kubectl get svc -n kube-system
+        ```
+        The output should be similar to the following:
+        ```
+        NAME                                           TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)                      AGE
+        addon-http-application-routing-nginx-ingress   LoadBalancer   10.0.29.88    52.157.228.200   80:31126/TCP,443:32386/TCP   72m
+        kube-dns                                       ClusterIP      10.0.0.10     <none>           53/UDP,53/TCP                3d16h
+        metrics-server                                 ClusterIP      10.0.113.30   <none>           443/TCP                      3d16h
+        ```
 3.  Create the Kubernetes deployment descriptors. To help you, you can make a copy of the yaml files of this project and modify them as follows:
     1. 01-msrdemo-dep.yaml: this is the main deployment descriptor, used by K8S to manage the pods. We specify 3 instances with rolling updates here. You just need to replace all `msrdemo` mentions with the name of your microservice, the other settings will work fine.
     2. 02-msrdemo-svc.yaml: it specifies the service that's on top of the pods. Just replace all `msrdemo` mentions with the name of your microservice.
