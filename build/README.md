@@ -22,4 +22,3 @@
 7.  Push the image to Docker hub: 
     - in the CLI, login to Docker hub using the `docker login` command. Remember that, just like git, docker hub expects you to provide a token by means of a password.
     - Enter the following command to push the image: `docker push $dockerId/$serviceName:$serviceVersion`
-8.  TODO: push an alias of the image with serviceVersion = latest
