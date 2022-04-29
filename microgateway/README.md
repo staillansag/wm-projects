@@ -57,7 +57,7 @@ The addition of the microgateway does not impact the way the MSR microservice im
 
 ### Preparation of the Kubernetes cluster
 
-TODO
+See [Create the AKS cluster](https://github.com/staillansag/wm-packages/blob/main/DEPLOYMENT.md#create-the-aks-cluster) and [Configure the AKS cluster](https://github.com/staillansag/wm-packages/blob/main/DEPLOYMENT.md#configure-the-aks-cluster)
 
 ### Generation of the Kubernetes deployment descriptors
 
