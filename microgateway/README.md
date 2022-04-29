@@ -81,3 +81,4 @@ However the generated file needs to be modified before it can be used:
 -   The service port must be changed from 0 to 9090
 -   the service nodePort must be removed
 
+As an alternative to the generated yaml file you can use the [set of yaml deployment descriptors provided in this projet](https://github.com/staillansag/wm-packages/tree/main/microgateway/deployment).
