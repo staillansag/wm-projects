@@ -84,7 +84,9 @@ Develop the services using the Designer as usual. You will place these services 
         az group create --location $location --name $resourceGroup
         ```
     3.  Create the cluster: 
-        `az aks create --resource-group $resourceGroup --name $clusterName --location $location --node-count $clusterNodeCount --node-vm-size $vmSize`
+        ```
+        az aks create --resource-group $resourceGroup --name $clusterName --location $location --node-count $clusterNodeCount --node-vm-size $vmSize
+        ```
 
         Note: to save costs, the AKS server can be stopped when it's no longer needed using this command `az aks stop --resource-group $resourceGroup --name $clusterName` and restarted later using `az aks start --resource-group $resourceGroup --name $clusterName`
         
