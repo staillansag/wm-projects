@@ -82,3 +82,32 @@ However the generated file needs to be modified before it can be used:
 -   the service nodePort must be removed
 
 As an alternative to the generated yaml file you can use the [set of yaml deployment descriptors provided in this projet](https://github.com/staillansag/wm-packages/tree/main/microgateway/deployment).
+
+####   00-msrdemo-secrets.yaml
+
+This descriptor is used to create a secret which stores the password of the ID Administrator user.
+The password must be encoded in base64. You can use the following command:
+```
+echo -n 'replace with your password' | base64
+```
+
+####    01-msrdemo-dep.yaml
+
+This descriptor specifies the pods.
+Compared to the standalone MSR deployment, we have here 2 containers per pod: one is the microgateway, the other is the MSR based microservice
+
+####    02-msrdemo-svc.yaml
+
+This descriptor specifies the service that fronts the pods.
+Compared to the standalone MSR deployment, we point here to the microgateway port (9090) instead of the MSR port (5555.)
+All calls to the pods must therefore go through the microgateway.
+
+####    99-ingress.yaml
+
+This descriptor specifies the ingress controller that exposes the service to the outside world.
+In the the standalone MSR deployment we used exactly the same file.
+
+
+### Load the deployment deployment descriptors in AKS using the kubectl utility
+
+
