@@ -102,7 +102,8 @@ To help you, you can make a copy of [the yaml files of this project](https://git
     Note: it can take a couple of minutes for the IP address to be allocated to the Ingress, if you see an empty address field then wait and rerun the same command.
         
 ##  Call the service
-You can for instance issue the following curl command (here we pass it the default IS admin user / password):
+You can for instance issue the following curl command.
+Here we pass it the default IS admin user / password, and we have also positionned a `ipAddress' variable that contains the IP address of the ingress.
 ```
 curl -u Administrator:manage --header 'Accept: application/json' http://$ipAddress/api/contacts/1
 ```
