@@ -48,13 +48,13 @@ Develop the services using the Designer as usual. You will place these services 
 3.  Create a source sub-folder and place yourself into this folder
 4.  Clone the git repository where your pushed the packaged using this command: `git clone <url of .git file>`
 5.  Move one level up (to the root of your build directory) and copy the Dockerfile that is in this project
-6.  Run this command to build the Docker image: `docker build -t <dockerId>/<serviceName>:<serviceVersion>` where
-    - `<dockerId>` is your ID in the Docker repository where you will subsequently push the image
-    - `<serviceName>` is the name of your microservice
-    - `<serviceVersion>` is the version of your microservice (for instance 1.0.0)
+6.  Run this command to build the Docker image: `docker build -t $dockerId/$serviceName:$serviceVersion` where
+    - `$dockerId` is your ID in the Docker repository where you will subsequently push the image
+    - `$serviceName` is the name of your microservice
+    - `$serviceVersion` is the version of your microservice (for instance 1.0.0)
 7.  Push the image to Docker hub: 
     - in the CLI, login to Docker hub using the `docker login` command. Remember that, just like git, docker hub expects you to provide a token by means of a password.
-    - Enter the following command to push the image: `docker push <dockerId>/<serviceName>:<serviceVersion>`
+    - Enter the following command to push the image: `docker push $dockerId/$serviceName:$serviceVersion`
 8.  TODO: push an alias of the image with serviceVersion = latest
 
 ## Deployment configuration
@@ -71,9 +71,13 @@ Develop the services using the Designer as usual. You will place these services 
 
 ### What needs to be done:
 1.  Create the AKS cluster:
-    1.  Create a resource group: `az group create --location eastus2 --name <resource_group>`
+    1.  Position a few variables:
+        `location=westeurope
+        resourceGroup=aks_group
+        clusterName=msrdemoaks`
+    2.  Create a resource group: `az group create --location eastus2 --name <resource_group>`
         Note: location can be changed (East US2 is chosen here because we'll work with Bs VMs that are cheaper in this region)
-    2.  Create the cluster: `az aks create --resource-group <resource_group> --name <cluster_name> --location eastus2 --node-count 1 --node-vm-size "Standard_B4ms"`
+    3.  Create the cluster: `az aks create --resource-group <resource_group> --name <cluster_name> --location eastus2 --node-count 1 --node-vm-size "Standard_B4ms"`
         
         Note: a Standard_B4ms VM is used here with 4 cores and 16 Gb memory. In theory a cheaper Standard_B2ms VM (with 2 cores and 8 Gb memory) could also be used.
         
