@@ -33,7 +33,7 @@ Develop the services using the Designer as usual. You will place these services 
 
 ## Build
 
-Check the [Build instructions](https://github.com/staillansag/wm-packages/blob/main/build/README.md)
+Check the [Build instructions](https://github.com/staillansag/wm-packages/blob/main/BUILD.md)
 
 ## Deployment configuration
 
