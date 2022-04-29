@@ -31,9 +31,9 @@ Develop the services using the Designer as usual. You will place these services 
 9.  Finally, push the changes to the remote repository using `git push -u origin main`
     It will ask you for a user name and password. If you use Github, note that you need to use a token instead of your Github password. To generate a token you can go to Settings / Developer Settings / Personal Access Tokens.
 
-## Build Configuration
+## Build
 
-See https://github.com/staillansag/wm-packages/blob/main/build/README.md
+Check the [Build instructions](https://github.com/staillansag/wm-packages/blob/main/build/README.md)
 
 ### Objectives: 
 -   Set up the build environment
