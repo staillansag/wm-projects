@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: msrjdbc
+  name: msrjdbc
+spec:
+  replicas: 1 
+  strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+  minReadySeconds: 60
+  selector:
+    matchLabels:
+      app: msrjdbc
+  template:
+    metadata:
+      labels:
+        app: msrjdbc
+    spec:
+      containers:
+      - image: staillansag/msrjdbc:0.0.3
+        imagePullPolicy: Always
+        name: msrjdbc-msr
+        env:
+        - name: SAG_IS_CONFIG_PROPERTIES
+          value: /opt/softwareag/IntegrationServer/msrjdbc.properties
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1000Mi
+        ports:
+        - containerPort: 5555
