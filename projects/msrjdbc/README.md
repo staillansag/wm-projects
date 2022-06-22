@@ -8,7 +8,7 @@ The MSR exposes a very simple REST API that inserts a record in a source table m
 POST /msrjdbcAPI/sources/
 ```
 A JDBC Insert notification is configured onto the source table. It creates a new UM message with each insert and this message is sent to a local UM queue.
-A UM trigger listens to this queue and replicates the source table reocrd into a target table msrjdbc_target
+A UM trigger listens to this queue and replicates the source table record into a target table msrjdbc_target
 
 ## Build
 
