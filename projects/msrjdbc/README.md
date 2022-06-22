@@ -30,3 +30,19 @@ docker login -u $dockerId
 It's going to ask you for a password. Enter your Docker hub Access Token here, not your password (see https://hub.docker.com/settings/security to create a token.)
 
 ## Deployment
+
+The Kubernetes deployment descriptors should work in any K8S cluster (Minikube, AKS, EKS, GKE.)
+Once you've connected lubectl to your cluster you can use the kubectl apply command to perform the deployment (but you'll have to edit the deployment descriptors before doing so.)
+
+### 01_msrjdbc_dep.yaml
+
+This file specifies the deployment of the pods.
+You need to change the image name to point to the one you've pushed to Docker hub.
+You can also adjust the number of replicas to your liking, as well as the resource specs (the limits I have allocated here are quite large, MSR containers should be able to run with a lower amount of CPU and RAM.)
+
+### 02_msrjdbc_svc.yaml
+
+This file specifies the service that exposes the pods traffic.
+It's a Load balancer service that exposes a public IP and the port 5555 through which the underlying MSRs can be reached.
+
+## Tests
