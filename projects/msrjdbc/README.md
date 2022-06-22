@@ -3,6 +3,13 @@
 This project illustrates the management of JDBC connectivity in the Microservice Runtime, including JDBC notifications.
 We point to a remote SQL Server instance and use the local UM (IS_LOCAL_CONNECTION) for the JDBC notifications part.
 
+The MSR exposes a very simple REST API that inserts a record in a source table msrjdbc_source (classical JDBC connectivity): 
+```
+POST /msrjdbcAPI/sources/
+```
+A JDBC Insert notification is configured onto the source table. It creates a new UM message with each insert and this message is sent to a local UM queue.
+A UM trigger listens to this queue and replicates the source table reocrd into a target table msrjdbc_target
+
 ## Build
 
 Here are the dependencies:
@@ -44,5 +51,17 @@ You can also adjust the number of replicas to your liking, as well as the resour
 
 This file specifies the service that exposes the pods traffic.
 It's a Load balancer service that exposes a public IP and the port 5555 through which the underlying MSRs can be reached.
+For the sake of simplicity we use plain HTTP here.
 
 ## Tests
+
+To insert a record into the source table:
+```
+url --location --request POST 'http://$k8sServiceIP:5555/msrjdbcAPI/sources/' \
+--header 'accept: application/json' \
+--header 'Authorization: Basic QWRtaW5pc3RyYXRvcjptYW5hZ2U=' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'value=test'
+```
+
+Note: we've kept the default MSR credentials here: Administrator/manage
