@@ -28,7 +28,7 @@ docker build -t $dockerId/$imageName:$imageVersion -f ./projects/msrjdbc/build/D
 
 Once you have build the image you can push it to your favorite Docker registry. For instance with Docker hub:
 ```
-docker push $dockerId/$ImageName:$ImageVersion
+docker push $dockerId/$imageName:$imageVersion
 ```
 
 Note: if you're not logged in to Docker hub then you need to issue the following command before the previous one:
