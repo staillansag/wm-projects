@@ -5,7 +5,7 @@ metadata:
     app: msrjdbc
   name: msrjdbc
 spec:
-  replicas: 1 
+  replicas: 1
   strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -27,6 +27,14 @@ spec:
         env:
         - name: SAG_IS_CONFIG_PROPERTIES
           value: /opt/softwareag/IntegrationServer/msrjdbc.properties
+        - name: MSSQL_USER
+          value: WM1011
+        - name: MSSQL_PASSWORD
+          value: WM1011
+        - name: MSSQL_SERVERNAME
+          value: wmis.sttlab.eu
+        - name: MSSQL_PORT
+          value: '1433'
         resources:
           limits:
             cpu: 500m
