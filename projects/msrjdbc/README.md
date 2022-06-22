@@ -17,6 +17,7 @@ Here are the dependencies:
 - /packages/WmJDBCAdapter (not part of the default MSR image)
 - /packages/WmArt (JDBC dependency, also not part of the default MSR image)
 - /lib/dd-cjdbc.jar (MS SQL JDBC driver, since this is a public jar file it's not in this Github repo, you can find this file in the /opt/softwareag/common/lib/ext folder of your IS installation)
+- /config/msr.xml (MSR license file, since this is a confidential file it's not in the Github repo, you need to place your license file into the /config folder and name it msr.xml before the build
 - /projects/msrjdbc/config/msrjdbc.properties (configuration properties for the Microservice runtime)
 
 Don't run this Docker build directly in the build folder, it will fail.
