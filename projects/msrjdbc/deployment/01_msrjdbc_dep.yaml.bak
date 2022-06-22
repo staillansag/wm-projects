@@ -5,7 +5,7 @@ metadata:
     app: msrjdbc
   name: msrjdbc
 spec:
-  replicas: 1
+  replicas: 1 
   strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -21,7 +21,7 @@ spec:
         app: msrjdbc
     spec:
       containers:
-      - image: staillansag/msrjdbc:0.0.4
+      - image: staillansag/msrjdbc:0.0.3
         imagePullPolicy: Always
         name: msrjdbc-msr
         env:
@@ -30,10 +30,7 @@ spec:
         - name: MSSQL_USER
           value: WM1011
         - name: MSSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mssql-password
-              key: password
+          value: WM1011
         - name: MSSQL_SERVERNAME
           value: wmis.sttlab.eu
         - name: MSSQL_PORT
