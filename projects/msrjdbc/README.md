@@ -23,7 +23,7 @@ Here are the dependencies:
 Don't run this Docker build directly in the build folder, it will fail.
 The packages and config folders have to be in the Docker build context, so you need to be at the root of the repository to run these builds:
 ```
-docker build -t $dockerId/$ImageName:$ImageVersion -f ./projects/msrjdbc/build/Dockerfile .
+docker build -t $dockerId/$imageName:$imageVersion -f ./projects/msrjdbc/build/Dockerfile .
 ```
 
 Once you have build the image you can push it to your favorite Docker registry. For instance with Docker hub:
