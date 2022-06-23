@@ -28,8 +28,6 @@ USER sagadmin
 
 
 	ADD --chown=sagadmin ./config/msr.xml /opt/softwareag/IntegrationServer/config/licenseKey.xml
-	#ADD --chown=sagadmin ./resources/messaging.cnf /opt/softwareag/IntegrationServer/config/messaging.cnf
-
 
 	ADD --chown=sagadmin ./packages/MSRJDBC /opt/softwareag/IntegrationServer/packages/MSRJDBC
 	ADD --chown=sagadmin ./packages/WmART /opt/softwareag/IntegrationServer/packages/WmART
@@ -38,5 +36,8 @@ USER sagadmin
 
 
 	ADD --chown=sagadmin ./projects/msrjdbc/config/msrjdbc.properties /opt/softwareag/IntegrationServer/msrjdbc.properties
+       	ADD --chown=sagadmin ./projects/msrjdbc/config/wmis_mssql.xml /opt/softwareag/IntegrationServer/config/jdbc/pool/wmis_mssql.xml
+	ADD --chown=sagadmin ./projects/msrjdbc/config/ISCoreAudit.xml /opt/softwareag/IntegrationServer/config/jdbc/function/ISCoreAudit.xml
+	ADD --chown=sagadmin ./projects/msrjdbc/config/DocumentHistory.xml /opt/softwareag/IntegrationServer/config/jdbc/function/DocumentHistory.xml
 
 # Scripts to be executed during build (must be included in add files files above and include path!!)
