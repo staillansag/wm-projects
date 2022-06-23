@@ -24,7 +24,7 @@
     </record>
     <value name="maxConcurrentThreads">1</value>
     <value name="inDoubtDetection">true</value>
-    <value name="resolveWithHistory">false</value>
+    <value name="resolveWithHistory">true</value>
     <value name="resolutionHistoryTTL">7200000</value>
     <value name="uniqueId">zKCnvW/TQwaJ4Hcl1WXy9pf+D4E=</value>
     <value name="executeUser">Administrator</value>
