@@ -1,0 +1,19 @@
+#Monitor configuration settings
+#Fri Mar 25 20:36:41 UTC 2022
+wm.monitor.dbRetries=3
+wm.monitor.useExactMatch=false
+wm.monitor.myWebmethodsHost=localhost
+wm.monitor.dlsSuperUser=Administrator
+wm.monitor.aclSetting=7
+wm.monitor.resubmitOnLocalIS=true
+wm.monitor.myWebmethodsPassword=
+wm.monitor.addMwUsertoMonitorACL=true
+wm.monitor.useCache=false
+wm.monitor.dlsEnabled=false
+wm.monitor.myWebmethodsPort=8585
+wm.monitor.archiveResults.days=14
+wm.monitor.jdbcArchive=false
+wm.monitor.connTimeout=10000
+wm.monitor.etlBatchSize=100
+wm.monitor.myWebmethodsTransport=http
+wm.monitor.myWebmethodsUserName=Administrator
