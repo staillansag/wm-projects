@@ -9,7 +9,7 @@
   <COMMENT></COMMENT>
 </INVOKE>
 
-<INVOKE TIMEOUT="" SERVICE="MSRJDBC.jdbc:insertRecord_mssql" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+<INVOKE TIMEOUT="" SERVICE="MSRJDBC.jdbc:insertSourceValue" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 
   <!-- nodes -->
@@ -22,7 +22,7 @@
     <value name="node_type">record</value>
     <value name="node_subtype">unknown</value>
     <value name="is_public">false</value>
-    <value name="field_name">insertRecord_mssqlInput</value>
+    <value name="field_name">insertSourceValueInput</value>
     <value name="field_type">record</value>
     <value name="field_dim">0</value>
     <value name="nillable">true</value>
@@ -33,7 +33,7 @@
         <value name="node_type">record</value>
         <value name="node_subtype">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">insertRecord_mssqlInput</value>
+        <value name="field_name">insertSourceValueInput</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -147,10 +147,10 @@
 
   <!-- nodes -->
 
-<MAPCOPY FROM="/UUID;1;0" TO="/insertRecord_mssqlInput;2;0/id;1;0">
+<MAPCOPY FROM="/UUID;1;0" TO="/insertSourceValueInput;2;0/id;1;0">
 </MAPCOPY>
 
-<MAPCOPY FROM="/value;1;0" TO="/insertRecord_mssqlInput;2;0/value;1;0">
+<MAPCOPY FROM="/value;1;0" TO="/insertSourceValueInput;2;0/value;1;0">
 </MAPCOPY>
 </MAP>
 </INVOKE>
@@ -251,6 +251,20 @@
         <value name="form_qualified">false</value>
         <value name="is_global">false</value>
         <array name="rec_fields" type="record" depth="1">
+        </array>
+        <value name="modifiable">true</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_subtype">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">insertSourceValueInput</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
           <record javaclass="com.wm.util.Values">
             <value name="node_type">unknown</value>
             <value name="node_subtype">unknown</value>
@@ -279,6 +293,20 @@
       <record javaclass="com.wm.util.Values">
         <value name="node_type">record</value>
         <value name="node_subtype">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">insertRecordOutput</value>
+        <value name="field_type">record</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+        <array name="rec_fields" type="record" depth="1">
+        </array>
+        <value name="modifiable">true</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">record</value>
+        <value name="node_subtype">unknown</value>
         <value name="node_comment"></value>
         <record name="node_hints" javaclass="com.wm.util.Values">
           <value name="field_usereditable">true</value>
@@ -299,7 +327,7 @@
         <value name="node_type">record</value>
         <value name="node_subtype">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">insertRecordOutput</value>
+        <value name="field_name">insertRecord_mssqlOutput</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -324,7 +352,7 @@
         <value name="node_type">record</value>
         <value name="node_subtype">unknown</value>
         <value name="is_public">false</value>
-        <value name="field_name">insertRecord_mssqlOutput</value>
+        <value name="field_name">insertSourceValueOutput</value>
         <value name="field_type">record</value>
         <value name="field_dim">0</value>
         <value name="nillable">true</value>
@@ -370,6 +398,12 @@
 </MAPDELETE>
 
 <MAPDELETE FIELD="/insertRecord_mssqlInput;2;0">
+</MAPDELETE>
+
+<MAPDELETE FIELD="/insertSourceValueInput;2;0">
+</MAPDELETE>
+
+<MAPDELETE FIELD="/insertSourceValueOutput;2;0">
 </MAPDELETE>
 </MAP>
 </FLOW>

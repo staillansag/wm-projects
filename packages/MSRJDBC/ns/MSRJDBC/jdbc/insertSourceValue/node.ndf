@@ -162,9 +162,9 @@
   <null name="auditfields_input"/>
   <null name="auditfields_output"/>
   <record name="auditsettings" javaclass="com.wm.util.Values">
-    <value name="document_data">0</value>
-    <value name="startExecution">false</value>
-    <value name="stopExecution">false</value>
+    <value name="document_data">1</value>
+    <value name="startExecution">true</value>
+    <value name="stopExecution">true</value>
     <value name="onError">true</value>
   </record>
   <record name="circuitbreakersettings" javaclass="com.wm.util.Values">
