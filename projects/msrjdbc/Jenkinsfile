@@ -49,6 +49,13 @@ pipeline {
       }
     }
     
+    stage('Restart pods') {
+        /* We deploy the latest version to K8S using a kubectl rollout restart command */
+      steps { 
+        sh 'kubectl rollout restart deployment msrjdbc'
+      }
+    }
+    
   }
   
 }
