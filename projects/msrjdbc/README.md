@@ -1,12 +1,14 @@
 # msrjdbc project
 
-This project illustrates the management of JDBC connectivity in the Microservice Runtime, including JDBC notifications.
-We point to a remote SQL Server instance and use the local UM (IS_LOCAL_CONNECTION) for the JDBC notifications part.
+This project illustrates various aspects of dealing with the Microservice Runtime (MSR):
+- External configuration, including the use of K8S secrets for the MSR license file and the database password
+- JDBC connectivity, including polling notifications
+- Asynchronous messaging (we use the local UM here)
+- Exposition of a REST API
+- Deployment to Azure Kubernetes Service
+- Automation of this deloyment using Jenkins
 
-The MSR exposes a very simple REST API that inserts a record in a source table msrjdbc_source (classical JDBC connectivity): 
-```
-POST /msrjdbcAPI/sources/
-```
+
 A JDBC Insert notification is configured onto the source table. It creates a new UM message with each insert and this message is sent to a local UM queue.
 A UM trigger listens to this queue and replicates the source table record into a target table msrjdbc_target
 
