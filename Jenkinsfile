@@ -20,7 +20,9 @@ pipeline {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
       steps {   
-        app = docker.build("staillansag/msrjdbc-jenkins", "-f projects/msrjdbc/build/Dockerfile .")
+        script {
+          app = docker.build("staillansag/msrjdbc-jenkins", "-f projects/msrjdbc/build/Dockerfile .")
+        }
       }
     }
 
@@ -38,7 +40,7 @@ pipeline {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
       steps { 
-        script{
+        script {
           docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app.push("${env.BUILD_NUMBER}")
               app.push("latest")
