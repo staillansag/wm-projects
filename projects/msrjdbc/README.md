@@ -75,8 +75,15 @@ You can then update the yaml file with the base 64 value.
 
 This file specifies the deployment of the pods.
 Several environment variables are passed to the container:
+- SAG_IS_CONFIG_PROPERTIES: location of the properties file, which is placed by the Docker build in /opt/softwareag/IntegrationServer
+- SAG_IS_LICENSE_FILE: location of the MSR license file, which is mounted during K8S deployment in /tmp/licenses
+- MSSQL_USER: the database user
+- MSSQL_PASSWORD: the database password, which comes from a K8S secret and is automatically injected upon deployment
+- MSSQL_SERVERNAME: the database server name (host name)
+- MSSQL_PORT: the database port
+- POLLING_INTERVAL: the JDBC polling notification interval, in seconds
 
-
+All these variables (except SAG_IS_CONFIG_PROPERTIES) are bound to entries of the properties file.
 
 You can adjust the number of replicas to your liking, as well as the resource specs (the limits I have allocated here are quite large, MSR containers should be able to run with a lower amount of CPU and RAM.)
 
@@ -86,15 +93,24 @@ This file specifies the service that exposes the pods traffic.
 It's a Load balancer service that exposes a public IP and the port 5555 through which the underlying MSRs can be reached.
 For the sake of simplicity we use plain HTTP here.
 
+Note: we make use of an Azure annotation (service.beta.kubernetes.io/azure-dns-label-name) to register the service IP in Azure's DNS. This makes it possible to have a fixed domain address for the service even if the underlying IP address changes. 
+
 ## Tests
 
 To insert a record into the source table:
 ```
-url --location --request POST 'http://$k8sServiceIP:5555/msrjdbcAPI/sources/' \
+curl --location --request POST 'http://$k8sServiceIP:5555/msrjdbcAPI/sources/' \
 --header 'accept: application/json' \
 --header 'Authorization: Basic QWRtaW5pc3RyYXRvcjptYW5hZ2U=' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'value=test'
 ```
 
-Note: we've kept the default MSR credentials here: Administrator/manage
+To check the target table:
+```
+curl --location --request GET 'http://$k8sServiceIP:5555/msrjdbcAPI/targets/' \
+--header 'accept: application/json' \
+--header 'Authorization: Basic QWRtaW5pc3RyYXRvcjptYW5hZ2U='
+```
+
+Note: the JDBC polling interval is set to 300 seconds, so you will have to wait a few minutes before seing the value in the target table.
