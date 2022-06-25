@@ -7,7 +7,7 @@ pipeline {
     stage("build") {
       
       steps {
-        
+        echo "Build is working"
       }
       
     }
