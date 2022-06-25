@@ -20,7 +20,7 @@ pipeline {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
       steps {   
-        app = docker.build("staillansag/msrjdbc-jenkins", "-f projects/msrjdbc/build/Dockerfile ."
+        app = docker.build("staillansag/msrjdbc-jenkins", "-f projects/msrjdbc/build/Dockerfile .")
       }
     }
 
