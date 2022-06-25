@@ -19,12 +19,8 @@ pipeline {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-      steps {     
-        dir('projects/msrjdbc/build'){
-            script{
-                app = docker.build("staillansag/msrjdbc-jenkins")
-            }
-        }
+      steps {   
+        app = docker.build("staillansag/msrjdbc-jenkins", "-f projects/msrjdbc/build/Dockerfile ."
       }
     }
 
