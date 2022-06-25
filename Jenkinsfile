@@ -2,6 +2,10 @@ pipeline {
   
   agent any
   
+  options {
+      skipStagesAfterUnstable()
+  }
+  
   stages {
     
     stage('Clone repository') { 
@@ -18,7 +22,7 @@ pipeline {
       steps {     
         dir('projects/msrjdbc/build'){
             script{
-                app = docker.build("staillansag/msrjdbc")
+                app = docker.build("staillansag/msrjdbc-jenkins")
             }
         }
       }
@@ -28,11 +32,8 @@ pipeline {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
       steps { 
-        script{
-          app.inside {
-              sh 'echo "Tests passed"'
-          }
-        }
+        sh 'echo "Tests passed"'
+      }
     }
 
     stage('Push image') {
@@ -43,7 +44,7 @@ pipeline {
       steps { 
         script{
           docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-              app.push(params.imageVersion)
+            app.push("${env.BUILD_NUMBER}")
               app.push("latest")
           }
         }
