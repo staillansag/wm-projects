@@ -1,29 +1,37 @@
-node {
-    def app
-
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
-
-        checkout scm
+pipeline {
+  
+  agent any
+  
+  options {
+      skipStagesAfterUnstable()
+  }
+  
+  stages {
+    
+    stage('Clone repository') { 
+      steps { 
+        script{
+          checkout scm
+        }
+      }
     }
-
+  
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        dir('projects/msrjdbc/build'){
-            script{
-                app = docker.build("staillansag/msrjdbc")
-            }
+      steps {   
+        script {
+          app = docker.build("staillansag/msrjdbc-jenkins", "-f projects/msrjdbc/build/Dockerfile .")
         }
+      }
     }
 
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
-
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
+      steps { 
+        sh 'echo "Tests passed"'
+      }
     }
 
     stage('Push image') {
@@ -31,9 +39,23 @@ node {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push(params.imageVersion)
-            app.push("latest")
+      steps { 
+        script {
+          docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            app.push("0.0.${env.BUILD_NUMBER}")
+              app.push("latest")
+          }
         }
+      }
     }
+    
+    stage('Restart pods') {
+        /* We deploy the latest version to K8S using a kubectl rollout restart command */
+      steps { 
+        sh 'kubectl rollout restart deployment msrjdbc'
+      }
+    }
+    
+  }
+  
 }
