@@ -21,7 +21,7 @@ spec:
         app: msrjdbc
     spec:
       containers:
-      - image: staillansag/msrjdbc:0.0.4
+      - image: staillansag/msrjdbc-jenkins:latest
         imagePullPolicy: Always
         name: msrjdbc-msr
         volumeMounts:
@@ -31,6 +31,8 @@ spec:
         env:
         - name: SAG_IS_CONFIG_PROPERTIES
           value: /opt/softwareag/IntegrationServer/msrjdbc.properties
+        - name: SAG_IS_LICENSE_FILE
+          value: /tmp/license/msr-license
         - name: MSSQL_USER
           value: WM1011
         - name: MSSQL_PASSWORD
@@ -50,13 +52,6 @@ spec:
             memory: 1000Mi
         ports:
         - containerPort: 5555
-        lifecycle:
-          postStart:
-            exec:
-              command:
-              - /bin/sh
-              - -c
-              - cp /tmp/licenses/msr-license /opt/softwareag/IntegrationServer/config/licenseKey.xml ; chown sagadmin:sagadmin /opt/softwareag/IntegrationServer/config/licenseKey.xml
       volumes:
       - name: licenses
         secret:
