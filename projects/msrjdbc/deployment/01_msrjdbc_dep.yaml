@@ -24,6 +24,10 @@ spec:
       - image: staillansag/msrjdbc:0.0.4
         imagePullPolicy: Always
         name: msrjdbc-msr
+        volumeMounts:
+        - mountPath: "/tmp/license"
+          name: licenses
+          readOnly: true
         env:
         - name: SAG_IS_CONFIG_PROPERTIES
           value: /opt/softwareag/IntegrationServer/msrjdbc.properties
@@ -38,9 +42,22 @@ spec:
           value: wmis.sttlab.eu
         - name: MSSQL_PORT
           value: '1433'
+        - name: POLLING_INTERVAL
+          value: '300'
         resources:
           limits:
             cpu: 500m
             memory: 1000Mi
         ports:
         - containerPort: 5555
+        lifecycle:
+          postStart:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - cp /tmp/licenses/msr-license /opt/softwareag/IntegrationServer/config/licenseKey.xml ; chown sagadmin:sagadmin /opt/softwareag/IntegrationServer/config/licenseKey.xml
+      volumes:
+      - name: licenses
+        secret:
+          secretName: licenses

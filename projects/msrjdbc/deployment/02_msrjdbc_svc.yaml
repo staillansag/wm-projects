@@ -4,6 +4,7 @@ kind: Service
 metadata:
   name: msrjdbc
   annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: sttlabmsr
   labels:
     name: msrjdbc
 spec:
