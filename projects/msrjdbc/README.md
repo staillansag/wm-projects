@@ -114,3 +114,7 @@ curl --location --request GET 'http://$k8sServiceIP:5555/msrjdbcAPI/targets/' \
 ```
 
 Note: the JDBC polling interval is set to 300 seconds, so you will have to wait a few minutes before seing the value in the target table.
+
+## Automated deployment
+
+A Jenkinsfile is provided to build the Docker image, push it to Dockerhub and trigger the restart of the K8S pods to take into account the new docker image.
