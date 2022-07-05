@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">extractParty</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">Ly8gcGlwZWxpbmUNCklEYXRhQ3Vyc29yIHBpcGVsaW5lQ3Vyc29yID0gcGlwZWxpbmUuZ2V0Q3Vy
+c29yKCk7DQogDQoJLy8gaW5wdXQNCglJRGF0YQlpbnB1dCA9IElEYXRhVXRpbC5nZXRJRGF0YSgg
+cGlwZWxpbmVDdXJzb3IsICJpbnB1dCIgKTsNCglJRGF0YQlwYXJ0eSA9IG51bGw7DQoJaWYgKCBp
+bnB1dCAhPSBudWxsKQ0KCXsNCgkJSURhdGFDdXJzb3IgaW5wdXRDdXJzb3IgPSBpbnB1dC5nZXRD
+dXJzb3IoKTsJCQ0KCQkvLyBpLnBhcnR5DQoJCXBhcnR5ID0gSURhdGFVdGlsLmdldElEYXRhKCBp
+bnB1dEN1cnNvciwgInBhcnR5IiApOw0KCQlpbnB1dEN1cnNvci5kZXN0cm95KCk7DQoJfQ0KcGlw
+ZWxpbmVDdXJzb3IuZGVzdHJveSgpOw0KDQovLyBwaXBlbGluZQ0KSURhdGFDdXJzb3IgcGlwZWxp
+bmVDdXJzb3JfMSA9IHBpcGVsaW5lLmdldEN1cnNvcigpOw0KDQpJRGF0YVV0aWwucHV0KCBwaXBl
+bGluZUN1cnNvcl8xLCAicGFydHkiLCBwYXJ0eSApOw0KcGlwZWxpbmVDdXJzb3JfMS5kZXN0cm95
+KCk7DQoNCgk=</value>
+</Values>
