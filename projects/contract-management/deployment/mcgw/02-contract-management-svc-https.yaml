@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: contract-management
+  annotations:
+  labels:
+    name: contract-management
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 443
+    targetPort: 9093
+  selector:
+    app: contract-management

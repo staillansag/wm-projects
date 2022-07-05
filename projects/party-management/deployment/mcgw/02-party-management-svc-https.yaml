@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: party-management
+  annotations:
+  labels:
+    name: party-management
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 443
+    targetPort: 9093
+  selector:
+    app: party-management

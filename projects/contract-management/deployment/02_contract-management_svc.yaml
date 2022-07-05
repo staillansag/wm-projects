@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: contract-management
+  annotations:
+  labels:
+    name: contract-management
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5555
+    targetPort: 5555
+  selector:
+    app: contract-management
+

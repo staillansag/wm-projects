@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: party-management
+  name: party-management
+spec:
+  replicas: 1 
+  strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+  minReadySeconds: 60
+  selector:
+    matchLabels:
+      app: party-management
+  template:
+    metadata:
+      labels:
+        app: party-management
+      annotations:
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - name: party-management-microgateway
+        image: staillansag/party-management:mcgw-0.0.1
+        imagePullPolicy: Always
+        env:
+        - name: mcgw_api_gateway_url
+          value: https://env262868.apigw-aw-eu.webmethods.io
+        - name: mcgw_api_gateway_user
+          value: admin
+        - name: mcgw_api_gateway_password
+          valueFrom:
+            secretKeyRef:
+              name: apigw-secret
+              key: password
+        - name: mcgw_downloads_apis
+          value: Insurance_party-management
+        - name: mcgw_ports_http
+          value: "9090"
+        - name: mcgw_ports_https
+          value: "9093"
+        - name: mcgw_microgatewayPool_microgatewayPoolName
+          value: party-management-mcgw
+        - name: mggw_applications_sync_enabled
+          value: "true"
+        - name: mggw_applications_sync_polling_interval_secs
+          value: "10"
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/softwareag/Microgateway/files/k8s-lifenesscheck.sh
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/softwareag/Microgateway/files/k8s-readinesscheck.sh
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+      - image: staillansag/party-management:0.0.3
+        imagePullPolicy: Always
+        name: party-management-microservice
+        env:
+        - name: SAG_IS_CONFIG_PROPERTIES
+          value: /opt/softwareag/IntegrationServer/party-management.properties
+        resources:
+          limits:
+            cpu: 500m
+            memory: 800Mi
+        ports:
+        - containerPort: 5555
+

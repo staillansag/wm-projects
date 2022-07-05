@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: party-management
+  name: party-management
+spec:
+  replicas: 1 
+  strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+  minReadySeconds: 60
+  selector:
+    matchLabels:
+      app: party-management
+  template:
+    metadata:
+      labels:
+        app: party-management
+    spec:
+      containers:
+      - image: staillansag/party-management:0.0.4
+        imagePullPolicy: Always
+        name: party-management
+        env:
+        - name: SAG_IS_CONFIG_PROPERTIES
+          value: /opt/softwareag/IntegrationServer/party-management.properties
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1000Mi
+        ports:
+        - containerPort: 5555
