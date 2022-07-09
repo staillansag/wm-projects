@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FLOW VERSION="3.0" CLEANUP="true">
+
+  <!-- nodes -->
+
+<MAP TIMEOUT="" MODE="STANDALONE">
+  <COMMENT></COMMENT>
+</MAP>
+
+<INVOKE TIMEOUT="" SERVICE="pub.json:jsonStringToDocument" VALIDATE-IN="$none" VALIDATE-OUT="$none">
+  <COMMENT></COMMENT>
+
+  <!-- nodes -->
+
+<MAP MODE="INPUT">
+  <MAPTARGET>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="node_subtype">unknown</value>
+    <value name="is_public">false</value>
+    <value name="field_name">jsonStringToDocumentInput</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
+        <value name="node_subtype">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">jsonString</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
+        <value name="node_subtype">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">jsonDocumentTypeName</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
+        <value name="node_subtype">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">strict</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+          <value>false</value>
+          <value>true</value>
+        </array>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
+        <value name="node_subtype">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">decodeRealAsDouble</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+          <value>true</value>
+          <value>false</value>
+        </array>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
+        <value name="node_subtype">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">decodeIntegerAsLong</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+          <value>true</value>
+          <value>false</value>
+        </array>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
+        <value name="node_subtype">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">decodeRealAsString</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+          <value>false</value>
+          <value>true</value>
+        </array>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
+        <value name="node_subtype">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">decodeNullRootAsEmpty</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+          <value>false</value>
+          <value>true</value>
+        </array>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+      <record javaclass="com.wm.util.Values">
+        <value name="node_type">field</value>
+        <value name="node_subtype">unknown</value>
+        <value name="is_public">false</value>
+        <value name="field_name">unescapeSpecialChars</value>
+        <value name="field_type">string</value>
+        <value name="field_dim">0</value>
+        <value name="field_opt">true</value>
+        <array name="field_options" type="value" depth="1">
+          <value>true</value>
+          <value>false</value>
+        </array>
+        <value name="nillable">true</value>
+        <value name="form_qualified">false</value>
+        <value name="is_global">false</value>
+      </record>
+    </array>
+    <value name="modifiable">true</value>
+  </record>
+</Values>
+</MAPTARGET>
+  <MAPSOURCE>
+
+<Values version="2.0">
+  <record name="xml" javaclass="com.wm.util.Values">
+    <value name="node_type">record</value>
+    <value name="node_subtype">unknown</value>
+    <value name="is_public">false</value>
+    <value name="field_type">record</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+    <array name="rec_fields" type="record" depth="1">
+    </array>
+    <value name="modifiable">true</value>
+  </record>
+</Values>
+</MAPSOURCE>
+
+  <!-- nodes -->
+
+<MAPSET NAME="Setter" OVERWRITE="true" VARIABLES="false" GLOBALVARIABLES="false" FIELD="/jsonString;1;0">
+  <DATA ENCODING="XMLValues" I18N="true">
+
+<Values version="2.0">
+  <value name="xml">{"CN=azureuser":{"sAMAccountType":"805306368","logonHours":"���������������������","primaryGroupID":"513","objectClass":"top","objectClass":"person","objectClass":"organizationalPerson","objectClass":"user","adminCount":"1","badPasswordTime":"132966769854491581","objectCategory":"CN=Person,CN=Schema,CN=Configuration,DC=sttlab,DC=eu","cn":"azureuser","userAccountControl":"512","dSCorePropagationData":"20220502125931.0Z","dSCorePropagationData":"20220502125931.0Z","dSCorePropagationData":"20220502124421.0Z","dSCorePropagationData":"16010101181216.0Z","codePage":"0","distinguishedName":"CN=azureuser,CN=Users,DC=sttlab,DC=eu","whenChanged":"20220502125931.0Z","whenCreated":"20220502124232.0Z","pwdLastSet":"132959574639840262","logonCount":"28","isCriticalSystemObject":"TRUE","description":"Built-in account for administering the computer/domain","accountExpires":"0","lastLogoff":"0","lastLogonTimestamp":"132959692106239100","objectGUID":"&gt;-�&amp;Ee�N�\u0019\n05\u0011\u0010�","lastLogon":"132967293530813165","uSNChanged":"12764","uSNCreated":"8196","objectSid":"\u0001\u0005\u0000\u0000\u0000\u0000\u0000\u0005\u0015\u0000\u0000\u0000Я\u0012��T\n��[\u001C�\u0001\u0000\u0000","countryCode":"0","sAMAccountName":"azureuser","instanceType":"4","memberOf":"CN=Group Policy Creator Owners,CN=Users,DC=sttlab,DC=eu","memberOf":"CN=Domain Admins,CN=Users,DC=sttlab,DC=eu","memberOf":"CN=Enterprise Admins,CN=Users,DC=sttlab,DC=eu","memberOf":"CN=Schema Admins,CN=Users,DC=sttlab,DC=eu","memberOf":"CN=Administrators,CN=Builtin,DC=sttlab,DC=eu","badPwdCount":"0","name":"azureuser"},"CN=Guest":{"sAMAccountType":"805306368","primaryGroupID":"514","objectClass":"top","objectClass":"person","objectClass":"organizationalPerson","objectClass":"user","badPasswordTime":"132966492444910870","objectCategory":"CN=Person,CN=Schema,CN=Configuration,DC=sttlab,DC=eu","cn":"Guest","userAccountControl":"66082","dSCorePropagationData":"20220502124421.0Z","dSCorePropagationData":"16010101000001.0Z","codePage":"0","distinguishedName":"CN=Guest,CN=Users,DC=sttlab,DC=eu","whenChanged":"20220502124232.0Z","whenCreated":"20220502124232.0Z","pwdLastSet":"0","logonCount":"0","isCriticalSystemObject":"TRUE","description":"Built-in account for guest access to the computer/domain","accountExpires":"9223372036854775807","lastLogoff":"0","objectGUID":"�(\u0019�&lt;7JC��alѪ\u0000M","lastLogon":"0","uSNChanged":"8197","uSNCreated":"8197","objectSid":"\u0001\u0005\u0000\u0000\u0000\u0000\u0000\u0005\u0015\u0000\u0000\u0000Я\u0012��T\n��[\u001C�\u0001\u0000\u0000","countryCode":"0","sAMAccountName":"Guest","instanceType":"4","memberOf":"CN=Guests,CN=Builtin,DC=sttlab,DC=eu","badPwdCount":"1","name":"Guest"},"CN=DefaultAccount":{"sAMAccountType":"805306368","primaryGroupID":"513","objectClass":"top","objectClass":"person","objectClass":"organizationalPerson","objectClass":"user","badPasswordTime":"132966462243155985","objectCategory":"CN=Person,CN=Schema,CN=Configuration,DC=sttlab,DC=eu","cn":"DefaultAccount","userAccountControl":"66082","dSCorePropagationData":"20220502124421.0Z","dSCorePropagationData":"16010101000001.0Z","codePage":"0","distinguishedName":"CN=DefaultAccount,CN=Users,DC=sttlab,DC=eu","whenChanged":"20220502124232.0Z","whenCreated":"20220502124232.0Z","pwdLastSet":"0","logonCount":"0","isCriticalSystemObject":"TRUE","description":"A user account managed by the system.","accountExpires":"9223372036854775807","lastLogoff":"0","objectGUID":"^�ы��=A�\u0006\t\tJ���","lastLogon":"0","uSNChanged":"8198","uSNCreated":"8198","objectSid":"\u0001\u0005\u0000\u0000\u0000\u0000\u0000\u0005\u0015\u0000\u0000\u0000Я\u0012��T\n��[\u001C�\u0001\u0000\u0000","countryCode":"0","sAMAccountName":"DefaultAccount","instanceType":"4","memberOf":"CN=System Managed Accounts Group,CN=Builtin,DC=sttlab,DC=eu","badPwdCount":"1","name":"DefaultAccount"},"CN=krbtgt":{"sAMAccountType":"805306368","primaryGroupID":"513","objectClass":"top","objectClass":"person","objectClass":"organizationalPerson","objectClass":"user","adminCount":"1","badPasswordTime":"0","objectCategory":"CN=Person,CN=Schema,CN=Configuration,DC=sttlab,DC=eu","msDS-SupportedEncryptionTypes":"0","cn":"krbtgt","userAccountControl":"514","showInAdvancedViewOnly":"TRUE","servicePrincipalName":"kadmin/changepw","dSCorePropagationData":"20220502125931.0Z","dSCorePropagationData":"20220502124421.0Z","dSCorePropagationData":"16010101000416.0Z","codePage":"0","distinguishedName":"CN=krbtgt,CN=Users,DC=sttlab,DC=eu","whenChanged":"20220502125931.0Z","whenCreated":"20220502124421.0Z","pwdLastSet":"132959690610684109","logonCount":"0","isCriticalSystemObject":"TRUE","description":"Key Distribution Center Service Account","accountExpires":"9223372036854775807","lastLogoff":"0","objectGUID":"F�8\u001EU�[M�����\u001A\u0019","lastLogon":"0","uSNChanged":"12779","uSNCreated":"12324","objectSid":"\u0001\u0005\u0000\u0000\u0000\u0000\u0000\u0005\u0015\u0000\u0000\u0000Я\u0012��T\n��[\u001C�\u0001\u0000\u0000","countryCode":"0","sAMAccountName":"krbtgt","instanceType":"4","memberOf":"CN=Denied RODC Password Replication Group,CN=Users,DC=sttlab,DC=eu","badPwdCount":"0","name":"krbtgt"},"CN=Colt Sievers":{"displayName":"Colt Sievers","givenName":"Colt","sAMAccountType":"805306368","primaryGroupID":"513","objectClass":"top","objectClass":"person","objectClass":"organizationalPerson","objectClass":"user","badPasswordTime":"0","objectCategory":"CN=Person,CN=Schema,CN=Configuration,DC=sttlab,DC=eu","mail":"csievers@sttlab.eu","cn":"Colt Sievers","userAccountControl":"512","userPrincipalName":"csievers@sttlab.eu","dSCorePropagationData":"16010101000000.0Z","codePage":"0","distinguishedName":"CN=Colt Sievers,CN=Users,DC=sttlab,DC=eu","whenChanged":"20220503074846.0Z","whenCreated":"20220503074846.0Z","pwdLastSet":"132960377260736817","logonCount":"2","accountExpires":"9223372036854775807","lastLogoff":"0","lastLogonTimestamp":"132960377261049301","objectGUID":"���A�eL�����ǌ�","sn":"Sievers","lastLogon":"132967301394465131","uSNChanged":"20588","uSNCreated":"20583","objectSid":"\u0001\u0005\u0000\u0000\u0000\u0000\u0000\u0005\u0015\u0000\u0000\u0000Я\u0012��T\n��[\u001CH\u0006\u0000\u0000","countryCode":"0","sAMAccountName":"csievers","instanceType":"4","memberOf":"CN=Remote Desktop Users,CN=Builtin,DC=sttlab,DC=eu","badPwdCount":"0","name":"Colt Sievers"},"CN=Stéphane Tailland":{"displayName":"Stéphane Tailland","givenName":"Stéphane","sAMAccountType":"805306368","primaryGroupID":"513","objectClass":"top","objectClass":"person","objectClass":"organizationalPerson","objectClass":"user","badPasswordTime":"0","objectCategory":"CN=Person,CN=Schema,CN=Configuration,DC=sttlab,DC=eu","mail":"stephane.tailland@company.com","cn":"Stéphane Tailland","userAccountControl":"512","userPrincipalName":"stephane.tailland@company.com","physicalDeliveryOfficeName":"Boulogne","dSCorePropagationData":"16010101000000.0Z","codePage":"0","distinguishedName":"CN=Stéphane Tailland,CN=Users,DC=sttlab,DC=eu","whenChanged":"20220504153337.0Z","whenCreated":"20220504153337.0Z","pwdLastSet":"132961520174337759","logonCount":"0","accountExpires":"9223372036854775807","lastLogoff":"0","objectGUID":"�$J����N��\u0013E�b��","sn":"Tailland","lastLogon":"0","uSNChanged":"24750","uSNCreated":"24746","objectSid":"\u0001\u0005\u0000\u0000\u0000\u0000\u0000\u0005\u0015\u0000\u0000\u0000Я\u0012��T\n��[\u001CE\b\u0000\u0000","countryCode":"0","sAMAccountName":"stephane.tailland","instanceType":"4","badPwdCount":"0","title":"responsable information","name":"Stéphane Tailland"}}</value>
+  <record name="type" javaclass="com.wm.util.Values">
+    <value name="node_type">field</value>
+    <value name="node_subtype">unknown</value>
+    <value name="is_public">false</value>
+    <value name="field_name">jsonString</value>
+    <value name="field_type">string</value>
+    <value name="field_dim">0</value>
+    <value name="nillable">true</value>
+    <value name="form_qualified">false</value>
+    <value name="is_global">false</value>
+  </record>
+</Values>
+</DATA>
+</MAPSET>
+</MAP>
+</INVOKE>
+</FLOW>

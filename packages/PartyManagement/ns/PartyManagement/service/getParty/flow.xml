@@ -1088,7 +1088,7 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">person</value>
+  <value name="xml">personne</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">record</value>
     <value name="node_subtype">unknown</value>
@@ -1303,7 +1303,7 @@
 
   <!-- nodes -->
 
-<INVOKE TIMEOUT="" SERVICE="PartyManagement.service:pause" VALIDATE-IN="$none" VALIDATE-OUT="$none" DISABLED="true">
+<INVOKE TIMEOUT="" SERVICE="PartyManagement.service:pause" VALIDATE-IN="$none" VALIDATE-OUT="$none">
   <COMMENT></COMMENT>
 </INVOKE>
 

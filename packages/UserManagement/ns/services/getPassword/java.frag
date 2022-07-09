@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">getPassword</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">Ly8gcGlwZWxpbmUKSURhdGFDdXJzb3IgcGlwZWxpbmVDdXJzb3IgPSBwaXBlbGluZS5nZXRDdXJz
+b3IoKTsKCVN0cmluZwlwYXNzd29yZCA9IElEYXRhVXRpbC5nZXRTdHJpbmcoIHBpcGVsaW5lQ3Vy
+c29yLCAicGFzc3dvcmQiICk7CnBpcGVsaW5lQ3Vyc29yLmRlc3Ryb3koKTsKClN0cmluZyBxdW90
+ZWRQYXNzd29yZCA9ICJcIiIgKyBwYXNzd29yZCArICJcIiI7CmJ5dGVbXSBidDsKdHJ5IHsKCWJ0
+ID0gcXVvdGVkUGFzc3dvcmQuZ2V0Qnl0ZXMoIlVURi0xNkxFIik7Cn0gY2F0Y2ggKFVuc3VwcG9y
+dGVkRW5jb2RpbmdFeGNlcHRpb24gZSkgewoJdGhyb3cgbmV3IFNlcnZpY2VFeGNlcHRpb24oZSk7
+Cn0KCgovLyBwaXBlbGluZQpJRGF0YUN1cnNvciBwaXBlbGluZUN1cnNvcl8xID0gcGlwZWxpbmUu
+Z2V0Q3Vyc29yKCk7CklEYXRhVXRpbC5wdXQoIHBpcGVsaW5lQ3Vyc29yXzEsICJ1bmljb2RlUHdk
+IiwgYnQgKTsKcGlwZWxpbmVDdXJzb3JfMS5kZXN0cm95KCk7CgoJ</value>
+</Values>

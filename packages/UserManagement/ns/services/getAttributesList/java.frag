@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <value name="name">getAttributesList</value>
+  <value name="encodeutf8">true</value>
+  <value name="body">Ly8gcGlwZWxpbmUKSURhdGFDdXJzb3IgcGlwZWxpbmVDdXJzb3IgPSBwaXBlbGluZS5nZXRDdXJz
+b3IoKTsKU3RyaW5nW10gYXR0cmlidXRlcyA9IG5ldyBTdHJpbmdbMTBdOwphdHRyaWJ1dGVzWzBd
+ID0gInNBTUFjY291bnROYW1lIjsKYXR0cmlidXRlc1sxXSA9ICJnaXZlbk5hbWUiOwphdHRyaWJ1
+dGVzWzJdID0gIm1haWwiOwphdHRyaWJ1dGVzWzNdID0gImwiOwphdHRyaWJ1dGVzWzRdID0gInBv
+c3RhbENvZGUiOwphdHRyaWJ1dGVzWzVdID0gImMiOwphdHRyaWJ1dGVzWzZdID0gIndoZW5DcmVh
+dGVkIjsKYXR0cmlidXRlc1s3XSA9ICJzbiI7CmF0dHJpYnV0ZXNbOF0gPSAidGl0bGUiOwphdHRy
+aWJ1dGVzWzldID0gIm5hbWUiOwoKCklEYXRhVXRpbC5wdXQoIHBpcGVsaW5lQ3Vyc29yLCAiYXR0
+cmlidXRlcyIsIGF0dHJpYnV0ZXMgKTsKcGlwZWxpbmVDdXJzb3IuZGVzdHJveSgpOwoKCQ==</value>
+</Values>
